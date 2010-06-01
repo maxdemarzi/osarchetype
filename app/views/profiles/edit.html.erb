@@ -1,0 +1,76 @@
+<br/>
+<br/>
+<div class="box box-50 altbox">
+	<div class="boxin">
+		<div class="header">
+			<h3>Editing profile</h3> 
+		</div>
+		<div class="content">
+			<% form_for(@profile) do |f| %>
+				<% if !f.error_messages.empty? %>
+					<div class="msg msg-error">
+						<%= f.error_messages %>  
+					</div>
+				<% end %>
+
+		<ol class="formList">  
+				<div class="msg msg-info">
+					<p>Edit your profile information and then click <strong>Update</strong>.</p>
+				</div>
+
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :headline %><br />
+    <%= f.text_field :headline %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :country_code %><br />
+    <%= f.text_field :country_code %>
+  </p>
+  <p>
+    <%= f.label :industry %><br />
+    <%= f.text_field :industry %>
+  </p>
+  <p>
+    <%= f.label :summary %><br />
+    <%= f.text_area :summary, :size => "40x6" %>
+  </p>
+  <p>
+    <%= f.label :specialties %><br />
+    <%= f.text_area :specialties, :size => "40x6" %>
+  </p>
+  <p>
+    <%= f.label :proposal_comments %><br />
+    <%= f.text_field :proposal_comments %>
+  </p>
+  <p>
+    <%= f.label :associations %><br />
+    <%= f.text_field :associations %>
+  </p>
+  <p>
+    <%= f.label :honors %><br />
+    <%= f.text_field :honors %>
+  </p>
+  <p>
+    <%= f.submit 'Update' , :class => 'button altbutton' %> <%= link_to 'Cancel', "/profiles/#{@profile.user.username}" %>
+  </p>
+		</ol>  
+<% end %>
+
+<br/>
+
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,31 @@
+<h1>New external_user</h1>
+
+<% form_for(@external_user) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :service %><br />
+    <%= f.text_field :service %>
+  </p>
+  <p>
+    <%= f.label :service_id %><br />
+    <%= f.text_field :service_id %>
+  </p>
+  <p>
+    <%= f.label :service_handle %><br />
+    <%= f.text_field :service_handle %>
+  </p>
+  <p>
+    <%= f.label :confirmed %><br />
+    <%= f.check_box :confirmed %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', external_users_path %>

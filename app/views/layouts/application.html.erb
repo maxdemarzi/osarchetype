@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <!-- Meta --> 
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+    <meta name="google-site-verification" content="f1N8wBg47H7-rWuL0K-4aBsmYy8RWtpqKXWVUZfxVlo" />
+    <!-- End of Meta --> 
+	<title>Archety.pe</title>
+    <%= stylesheet_link_tag 'blue', 'jquery.autocomplete', 'jquery.multiselect', :cache => true %>
+    <!-- Change name of the stylesheet to change colors (blue/red/black/green/brown/orange/purple) -->
+
+    <link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/redmond/jquery-ui.css" />
+
+        <!--[if lte IE 7.0]><link rel="stylesheet" type="text/css" href="stylesheets/ie.css" media="screen, projection, tv" /><![endif]-->
+		<!--[if IE 8.0]>
+			<style type="text/css">
+				form.fields fieldset {margin-top: -10px;}
+			</style>
+		<![endif]-->
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.js"></script>
+
+		<script type="text/javascript" src="/javascripts/jquery.autocomplete.js"></script>
+		<script type="text/javascript" src="/javascripts/jquery.multiselect.js"></script>
+		<script type="text/javascript" src="/javascripts/application.js"></script>
+		<!-- Adding support for transparent PNGs in IE6: -->
+		<!--[if lte IE 6]>
+			<script type="text/javascript" src="/javascripts/ddpng.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('#nav #h-wrap .h-ico');
+				DD_belatedPNG.fix('.ico img');
+				DD_belatedPNG.fix('.msg p');
+				DD_belatedPNG.fix('table.calendar thead th.month a img');
+				DD_belatedPNG.fix('table.calendar tbody img');
+			</script>
+		<![endif]-->
+		<script type="text/javascript">
+			$(document).ready(function() {
+			    // Search input text handling on focus
+					var $searchq = $("#search-q").attr("value");
+				    $('#search-q.text').css('color', '#999');
+					$('#search-q').focus(function(){
+						if ( $(this).attr('value') == $searchq) {
+							$(this).css('color', '#555');
+							$(this).attr('value', '');
+						}
+					});
+					$('#search-q').blur(function(){
+						if ( $(this).attr('value') == '' ) {
+							$(this).attr('value', $searchq);
+							$(this).css('color', '#999');
+						}
+					});
+				// Switch categories
+					$('#h-wrap').hover(function(){
+							$(this).toggleClass('active');
+							$("#h-wrap ul").css('display', 'block');
+						}, function(){
+							$(this).toggleClass('active');
+							$("#h-wrap ul").css('display', 'none');
+					});
+				// Handling with tables (adding first and last classes for borders and adding alternate bgs)
+					$('tbody tr:even').addClass('even');
+					$('table.grid tbody tr:last-child').addClass('last');
+					$('tr th:first-child, tr td:first-child').addClass('first');
+					$('tr th:last-child, tr td:last-child').addClass('last');
+					$('form.fields fieldset:last-child').addClass('last');
+				// Handling with lists (alternate bgs)
+					$('ul.simple li:even').addClass('even');
+				// Handling with grid views (adding first and last classes for borders and adding alternate bgs)
+					$('.grid .line:even').addClass('even');
+					$('.grid .line:first-child').addClass('firstline');
+					$('.grid .line:last-child').addClass('lastline');
+				// Tabs switching
+					$('#box1 .content#box1-grid').hide(); // hide content related to inactive tab by default
+					$('#box1 .header ul a').click(function(){
+						$('#box1 .header ul a').removeClass('active');
+						$(this).addClass('active'); // make clicked tab active
+						$('#box1 .content').hide(); // hide all content
+						$('#box1').find('#' + $(this).attr('rel')).show(); // and show content related to clicked tab
+						return false;
+					});
+			});
+		</script>
+  </head>
+  <body>
+		<div id="header">
+			<div class="inner-container clearfix">
+				<h1 id="logo">
+					<a class="home" href="/" title="Go to the homepage">
+						Archety.pe	<!-- your title -->
+						<span class="ir"></span>
+					</a><br />
+				</h1>
+				<div id="userbox">
+					<div class="inner">
+					    <% if current_user %>  
+						<strong><%= current_user.username %> </strong>
+						<ul class="clearfix">
+					        <li><%= link_to "Edit Account", edit_user_path(:current) %>  </li>
+					        <li><%= link_to "Logout", logout_path %>  </li>
+						</ul>
+					    <% else %>  
+						<ul class="clearfix">
+					        <li><%= link_to "Register", new_user_path %></li>
+					        <li><%= link_to "Log in", login_path %></li>
+						</ul>
+					    <% end %>  
+					</div>
+				</div><!-- #userbox -->
+			</div><!-- .inner-container -->
+		</div><!-- #header -->
+
+ <% if current_user %>  
+      	<div id="nav"> 
+			<div class="inner-container clearfix"> 
+				<div id="h-wrap"> 
+					<div class="inner"> 
+						<h2> 
+							<span class="h-ico ico-user"><span><a href="/profiles/<%= current_user.username %>" style="border-bottom: 0px ;">Profile</a></span></span> 
+							<span class="h-arrow"></span> 
+						</h2> 
+						<ul class="clearfix"> 
+							<!-- Admin sections - feel free to add/modify your own icons are located in "css/img/h-ico/*" --> 
+							<li><a class="h-ico ico-mail" href="/messages"><span>Messages</span></a></li> 
+							<li><a class="h-ico ico-advanced" href="/auth"><span>Sync Linked In</span></a></li> 
+							<li><a class="h-ico ico-cash" href="/positions"><span>Positions</span></a></li> 
+							<li><a class="h-ico ico-education" href="/educations"><span>Education</span></a></li> 
+							<li><a class="h-ico ico-splash" href="/suggestions"><span>Suggestions</span></a></li> 
+							<li><a class="h-ico ico-users" href="/"><span>Friends</span></a></li> 
+							<li><a class="h-ico ico-addressbook" href="/contacts"><span>Address Book</span></a></li> 
+
+
+						</ul> 
+					</div> 
+				</div><!-- #h-wrap --> 
+				<form action="" method="post"><!-- Search form --> 
+					<fieldset> 
+						<label class="a-hidden" for="search-q">Search query:</label> 
+						<input id="search-q" class="text fl" type="text" name="search-q" size="20" value="search&hellip;" /> 
+						<input class="hand fr" type="image" src="/stylesheets/img/search-button.png" alt="Search" /> 
+					</fieldset> 
+				</form> 
+
+			</div><!-- .inner-container --> 
+      	</div><!-- #nav --> 
+ <% end %>  
+
+		<div id="container"> 
+			<div class="inner-container"> 
+
+			    <%= display_standard_flashes %>
+
+			    <%= yield %>
+
+			</div>
+		</div>
+
+  </body>
+</html>

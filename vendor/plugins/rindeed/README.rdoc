@@ -1,0 +1,100 @@
+= Rindeed
+
+Rindeed is something like a wrapper around Indeed Web Services (XML interface).
+
+You can find more info about Indeed Web Services at:
+
+  http://www.indeed.com/jsp/apiinfo.jsp
+  http://www.indeed.com/jsp/xmlsample.jsp
+
+Rindeed depends on <b>hpricot</b> http://github.com/why/hpricot and <b>will_paginate</b> http://github.com/mislav/will_paginate
+
+== Installation
+
+  $ ruby script/plugin install git://github.com/vlado/rindeed.git
+
+After install you must set your publisher id and you can also set some default options that will be used in all searches.
+Good place to place this could be ApplicationController
+
+  class ApplicationController < ActionController::Base
+    Rindeed.publisher_id = "yourpublisherid"
+    Rindeed.default_options(:chnl => "mysite", :limit => 30)
+  end
+
+== Examples
+
+=== Simple search
+
+  ExampleController < ActionController::Base
+
+    def list_ruby_jobs_in_ny_area
+      @jobs = Rindeed.find("ruby", "ny")
+    end
+
+    def indeed_search
+      @jobs = Rindeed.find(params[:what], params[:where], :sort => "date", :limit => 20)
+    end
+
+  end
+
+=== Pagination
+
+Pagination is implemented using mislav's will_paginate, and it should be pretty straightforward
+
+First call pagination in your controller
+
+  ExampleController < ActionController::Base
+
+    def indeed_search
+      @jobs = Rindeed.paginate(params[:what], params[:where], :page => params[:page] || 1)
+    end
+
+  end
+
+and then you can do this in your view
+
+  <h2>My jobs from Indeed</h2>
+  
+  <%= will_paginate @jobs %>
+
+  <% for job in @jobs %>
+    <%= job[:jobtitle] %>
+  <% end %>
+
+
+== Useful Links
+
+Indeed Webmaster Tools - http://www.indeed.com/tools/webmaster/
+
+Indeed XML Job Search Feed API - http://www.indeed.com/jsp/xmlsample.jsp
+
+Indeed Advanced Search - http://www.indeed.com/advanced_search
+
+will_paginate wiki - http://wiki.github.com/mislav/will_paginate
+
+Hpricot wiki - http://wiki.github.com/why/hpricot
+
+== Licence
+
+(The MIT Licence)
+
+Copyright (c) 2009 Vlado Cingel
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

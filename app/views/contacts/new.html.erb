@@ -1,0 +1,55 @@
+<br/>
+<br/>
+		<div class="box box-50 altbox">
+			<div class="boxin">
+				<div class="header">
+					<h3>New Contact</h3>
+				</div>
+			<%= render @contact %> 
+			</div>
+		</div>
+
+		<div class="box box-50 altbox">
+			<div class="boxin">
+				<div class="header">
+					<h3>Import Contacts</h3>
+				</div>
+
+<form class="basic" action="" method="post" enctype="multipart/form-data">
+
+<div class="inner-form">
+
+<% if @consumer_tokens.empty? %>
+
+	<div class="msg msg-info">
+		<p>You are currently not connected to any external services.</p>
+	</div>
+
+<% else %>
+	<div class="msg msg-ok">
+		<p>You are connected to the following services: <%= @consumer_tokens.collect{|x| x.class.service_name.to_s.humanize}.join(", ") %></p>
+	</div>
+
+    <% @consumer_tokens.each do |token| %>
+      <p>
+        <%= link_to 'Import ' + token.class.service_name.to_s.humanize + ' Contacts', "/contacts/import/#{token.class.service_name.to_s.humanize}", :class => 'button altbutton'  %> or <%= link_to 'Resync ' + token.class.service_name.to_s.humanize  + ' Contacts', oauth_consumer_path(token.class.service_name) %>
+      </p><br/>
+    <% end %>
+<% end %>
+
+<% unless @services.empty? %>
+<h3>You can connect to the following services:</h3>
+<ul>
+  <% @services.each do |service| %>
+    <li>
+      <%= link_to service.to_s.humanize, oauth_consumer_path(service) %>
+    </li>
+  <% end %>
+</ul>
+<% end %>
+
+</div>
+</form>
+			</div>
+			</div>
+		</div>

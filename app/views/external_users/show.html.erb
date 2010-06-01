@@ -1,0 +1,28 @@
+<p>
+  <b>User:</b>
+  <%=h @external_user.user_id %>
+</p>
+
+<p>
+  <b>Service:</b>
+  <%=h @external_user.service %>
+</p>
+
+<p>
+  <b>Service:</b>
+  <%=h @external_user.service_id %>
+</p>
+
+<p>
+  <b>Service handle:</b>
+  <%=h @external_user.service_handle %>
+</p>
+
+<p>
+  <b>Confirmed:</b>
+  <%=h @external_user.confirmed %>
+</p>
+
+
+<%= link_to 'Edit', edit_external_user_path(@external_user) %> |
+<%= link_to 'Back', external_users_path %>

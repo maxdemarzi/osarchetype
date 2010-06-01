@@ -1,0 +1,46 @@
+<div id="box1" class="box box-100 altbox"><!-- box full-width --> 
+	<div class="boxin"> 
+		<div class="header"> 
+			<h3>Suggested Jobs for <%= @title unless @title.nil? %></h3> 
+		</div>
+		<div id="box1-tabular" class="content">
+
+<table>
+<thead>
+  <tr>
+    <th>Job Title</th>
+    <th>Location</th>
+    <th>Source</th>
+    <th>Date</th>
+    <th>Snippet</th>
+  </tr>
+</thead>
+
+
+  <% for job in @jobs %>
+	  <tr>
+	    <td><%= link_to job[:jobtitle], job[:url] , :onMousedown => job[:onmousedown] %></td>
+	    <td><%=h job[:city] + ", " + job[:state] +  ", " + job[:country]%></td>
+	    <td><%=h job[:source] %></td>
+	    <td><%=h job[:date].to_s(:easy_date) %></td>
+	    <td><%=h job[:snippet] %></td>
+
+	  </tr>
+  <% end %>
+
+</table>
+<br />
+
+
+		<div class="pagination"> 
+		  <%= will_paginate @jobs %>
+		</div>
+
+		</div>
+	</div>
+</div>
+<script type="text/javascript"
+src="http://www.indeed.com/ads/apiresults.js"></script>
+
+
+<span id=indeed_at><a href="http://www.indeed.com/">jobs</a> by <a href="http://www.indeed.com/" title="Job Search"><img src="http://www.indeed.com/p/jobsearch.gif" style="border: 0; vertical-align: middle;" alt="Indeed job search"></a></span>

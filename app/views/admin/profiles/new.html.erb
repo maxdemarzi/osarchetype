@@ -1,0 +1,71 @@
+<h1>New profile</h1>
+
+<% form_for(@profile) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.label :linkedin_id %><br />
+    <%= f.text_field :linkedin_id %>
+  </p>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+  <p>
+    <%= f.label :headline %><br />
+    <%= f.text_field :headline %>
+  </p>
+  <p>
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </p>
+  <p>
+    <%= f.label :country_code %><br />
+    <%= f.text_field :country_code %>
+  </p>
+  <p>
+    <%= f.label :industry %><br />
+    <%= f.text_field :industry %>
+  </p>
+  <p>
+    <%= f.label :summary %><br />
+    <%= f.text_field :summary %>
+  </p>
+  <p>
+    <%= f.label :specialties %><br />
+    <%= f.text_field :specialties %>
+  </p>
+  <p>
+    <%= f.label :proposal_comments %><br />
+    <%= f.text_field :proposal_comments %>
+  </p>
+  <p>
+    <%= f.label :associations %><br />
+    <%= f.text_field :associations %>
+  </p>
+  <p>
+    <%= f.label :honors %><br />
+    <%= f.text_field :honors %>
+  </p>
+  <p>
+    <%= f.label :picture_url %><br />
+    <%= f.text_field :picture_url %>
+  </p>
+  <p>
+    <%= f.label :public_profile_url %><br />
+    <%= f.text_field :public_profile_url %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', profiles_path %>

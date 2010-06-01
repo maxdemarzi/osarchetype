@@ -1,0 +1,66 @@
+<br/>
+<br/> 
+<div class="box box-50 altbox">
+	<div class="boxin">
+		<div class="header">
+			<h3>My Profile</h3>
+		</div>
+
+	<div class="content"> 
+
+<table>
+	<tr>
+		<td>
+		  <p><%=h @profile.first_name %>  <%=h @profile.last_name %></p>
+		  <p><%=h @profile.headline %></p>
+		  <p><%=h @profile.location %> | <%=h @profile.industry %></p>
+		</td>
+		<td>
+			<% unless @profile.picture_url.nil? %>
+			  <img src="<%= @profile.picture_url %>">
+			<% end %>
+		</td>
+	</tr>
+
+	<tr>
+		<td colspan="2">
+		  <p><b>Summary:</b> <%=h @profile.summary %></p>
+		  <p><b>Specialties:</b> <%=h @profile.specialties %></p>
+		  <p><b>Associations:</b> <%=h @profile.associations %></p>
+		  <p><b>Honors:</b> <%=h @profile.honors %></p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<p><b>Positions:</b> <br/>
+			<% @positions.each do |p| %>
+				<%=h p.title %> @ <%=h p.company %><br/>
+			<% end %>
+		</p>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+		<p><b>Education:</b> <br/>
+			<% @educations.each do |e| %>
+				<%=h e.degree %> in <%=h e.field_of_study %> @ <%=h e.school_name %><br/>
+			<% end %>
+		</p>
+		</td>
+	</tr>
+</table>
+
+
+
+</div>	
+<div>
+<p>
+  <%= link_to 'Edit', edit_profile_path(@profile), :class => 'button altbutton' unless current_user.id != @profile.user_id %>
+</p>
+</div>	
+
+
+  <br/>
+
+	</div>
+</div>

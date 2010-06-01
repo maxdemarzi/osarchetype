@@ -1,0 +1,46 @@
+<br/>
+<br/> 
+		<div class="box box-50 altbox">
+			<div class="boxin">
+				<div class="header">
+					<h3>My Position</h3>
+				</div>
+
+<p>
+  <b>Title:</b>
+  <%=h @position.title %>
+</p>
+
+<p>
+  <b>Summary:</b>
+  <%=h @position.summary %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%=h @position.start_month %>/<%=h @position.start_year %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%=h @position.end_month %>/<%=h @position.end_year %>
+</p>
+
+<p>
+  <b>Current?:</b>
+  <%=h @position.is_current %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%=h @position.company %>
+</p>
+<p>
+  <br/>
+  <%= link_to 'Edit', edit_position_path(@position) , :class => 'button altbutton' %> <%= link_to 'All my positions', positions_path %>
+</p>
+<br/>
+<br/>
+
+	</div>
+</div>

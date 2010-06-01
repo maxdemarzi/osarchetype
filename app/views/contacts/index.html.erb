@@ -1,0 +1,41 @@
+<div id="box1" class="box box-100 altbox"><!-- box full-width --> 
+	<div class="boxin"> 
+		<div class="header"> 
+			<h3>Listing contacts</h3> 
+			<%= link_to 'Create or Import a new contact', new_contact_path , :class => 'button' %>
+			<%= link_to 'Invite Contacts by E-mail', new_invitation_path , :class => 'button' %>
+
+		</div>
+
+<div id="box1-tabular" class="content">
+
+
+<table>
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th colspan=3>Actions</th>
+  </tr>
+</thead>
+<% @contacts.each do |contact| %>
+  <tr>
+    <td><%=h contact.name %></td>
+    <td><%=h contact.email %></td>
+    <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
+    <td><%= link_to 'Delete', contact, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+
+		<div class="pagination"> 
+		  <%= will_paginate @contacts %>
+		</div>
+	</div>
+
+	</div>
+</div>
+

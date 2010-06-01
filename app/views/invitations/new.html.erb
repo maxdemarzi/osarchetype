@@ -1,0 +1,46 @@
+		<div class="box box-100 altbox">
+			<div class="boxin">
+				<div class="header">
+					<h3>Inviting Contacts</h3>
+				</div>
+<% form_for (@invitation), :url => invitation_path do |f| %> 
+					<% if !f.error_messages.empty? %>
+						<div class="msg msg-error">
+							<%= f.error_messages %>  
+						</div>
+					<% end %>
+
+  <p>
+    <%= f.label :recipient_email %><br />
+    <%= f.text_area :recipient_email, :size => "60x5", :class => 'autocomplete', 'autocomplete_url'=>autocomplete_for_contact_email_path %>
+  </p>
+
+  <p>
+	<%= select("invitation", :recipient_email_too, @contacts, { :include_blank => true}, {"id"=>"invitation_recipient_email_select", :multiple => true })  %> 
+  </p>
+
+  <p>
+    <%= f.label :message %><br />
+    <%= f.text_area :message, :size => "60x10" %>
+  </p>
+  <p>
+    <%= f.submit 'Submit', :class => 'button altbutton' %> <%= link_to 'All Contacs', contacts_path %>
+  </p>
+<% end %> 
+
+
+			</div>
+		</div>
+
+
+<script type="text/javascript">
+$(function(){
+	$("#invitation_recipient_email_select").multiselect({
+		state: 'open',
+		noneSelectedText: 'Select Emails',
+		selectedList: 2,
+		minWidth: 505
+	});
+
+});
+</script>

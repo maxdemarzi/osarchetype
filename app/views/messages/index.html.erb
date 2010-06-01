@@ -1,0 +1,113 @@
+		<script type="text/javascript"> 
+			$(document).ready(function() {
+				// Tabs switching
+					$('#box1 .content#sent').hide(); // hide content related to inactive tab by default
+					$('#box1 .content#drafts').hide(); // hide content related to inactive tab by default
+					$('#box1 .header ul a').click(function(){
+						$('#box1 .header ul a').removeClass('active');
+						$(this).addClass('active'); // make clicked tab active
+						$('#box1 .content').hide(); // hide all content
+						$('#box1').find('#' + $(this).attr('rel')).show(); // and show content related to clicked tab
+						return false;
+					});
+			});
+		</script> 
+
+
+<br/>
+<br/>
+		<div id="box1" class="box box-100 altbox">
+			<div class="boxin">
+				<div class="header">
+					<h3>Messages</h3>
+					<%= link_to 'New Message', new_message_path, :class => 'button' %>
+					<ul> 
+						<li><a rel="inbox" href="#" class="active">Inbox</a></li>
+						<li><a rel="sent" href="#">Sent</a></li>
+						<li><a rel="drafts" href="#">Drafts</a></li>
+					</ul> 
+				</div>
+				<div id="inbox" class="content">
+<table>
+<thead>
+  <tr>
+    <th>From</th>
+    <th>Subject</th>
+    <th>Preview</th>
+    <th colspan=5>Actions</th>
+  </tr>
+</thead>
+<% @messages.each do |message| %>
+  <tr>
+    <td><%=h message.sender.username %></td>
+    <td><%=h message.subject %></td>
+    <td><%=h message.body %></td>
+    <td><%= link_to 'Show', message_path(message.message_id) %></td>
+    <td><%= link_to 'Reply', new_message_path(:id => message.message_id, :perform => "reply") %></td>
+    <td><%= link_to 'Reply to All', new_message_path(:id => message.message_id, :perform => "reply_to_all") %></td>
+    <td><%= link_to 'Forward', new_message_path(:id => message.message_id, :perform => "forward") %></td>
+    <td><%= link_to 'Delete', message_path(message.message_id), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+				</div>
+				<div id="sent" class="content">
+<table>
+<thead>
+  <tr>
+    <th>To</th>
+    <th>Subject</th>
+    <th>Preview</th>
+    <th colspan=5>Actions</th>
+  </tr>
+</thead>
+<% @sent_messages.each do |message| %>
+  <tr>
+    <td><%=h message.to.to_a.collect{|user| user.username}.join(",") %></td>
+    <td><%=h message.subject %></td>
+    <td><%=h message.body %></td>
+    <td><%= link_to 'Show', message %></td>
+    <td><%= link_to 'Reply', new_message_path(:id => message, :perform => "reply") %></td>
+    <td><%= link_to 'Reply to All', new_message_path(:id => message, :perform => "reply_to_all") %></td>
+    <td><%= link_to 'Forward', new_message_path(:id => message, :perform => "forward") %></td>
+    <td><%= link_to 'Delete', message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+
+				</div>
+				<div id="drafts" class="content">
+<table>
+<thead>
+  <tr>
+    <th>To</th>
+    <th>Subject</th>
+    <th>Preview</th>
+    <th colspan=3>Actions</th>
+  </tr>
+</thead>
+<% @drafts.each do |message| %>
+  <tr>
+    <td><%=h message.to %></td>
+    <td><%=h message.subject %></td>
+    <td><%=h message.body %></td>
+    <td><%= link_to 'Show', message %></td>
+    <td><%= link_to 'Resume', edit_message_path(message) %></td>
+    <td><%= link_to 'Delete', message, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+<br />
+

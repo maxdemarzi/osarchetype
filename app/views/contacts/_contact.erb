@@ -1,0 +1,19 @@
+<% form_for(@contact) do |f| %>
+					<% if !f.error_messages.empty? %>
+						<div class="msg msg-error">
+							<%= f.error_messages %>  
+						</div>
+					<% end %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.submit 'Submit', :class => 'button altbutton' %> <%= link_to 'All Contacs', contacts_path %>
+  </p>
+<% end %> 

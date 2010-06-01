@@ -1,0 +1,53 @@
+<p>
+  <b>User:</b>
+  <%=h @education.user_id %>
+</p>
+
+<p>
+  <b>Linkedin:</b>
+  <%=h @education.linkedin_id %>
+</p>
+
+<p>
+  <b>School name:</b>
+  <%=h @education.school_name %>
+</p>
+
+<p>
+  <b>Degree:</b>
+  <%=h @education.degree %>
+</p>
+
+<p>
+  <b>Field of study:</b>
+  <%=h @education.field_of_study %>
+</p>
+
+<p>
+  <b>Activities:</b>
+  <%=h @education.activities %>
+</p>
+
+<p>
+  <b>Start year:</b>
+  <%=h @education.start_year %>
+</p>
+
+<p>
+  <b>Start month:</b>
+  <%=h @education.start_month %>
+</p>
+
+<p>
+  <b>End year:</b>
+  <%=h @education.end_year %>
+</p>
+
+<p>
+  <b>End month:</b>
+  <%=h @education.end_month %>
+</p>
+
+
+<%= link_to 'Edit', edit_education_path(@education) %> |
+<%= link_to 'Back', educations_path %>

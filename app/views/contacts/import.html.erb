@@ -1,0 +1,38 @@
+<div id="box1" class="box box-100 altbox"><!-- box full-width --> 
+	<div class="boxin"> 
+		<div class="header"> 
+			<h3>Imported contacts</h3> 
+			<%= link_to 'Continue', contacts_path, :class => 'button' %>
+		</div>
+
+<%- if @new_contacts.empty? -%>
+
+	<div class="msg msg-error">
+		<p>No contacts were imported.</p>
+	</div>
+
+<% else %>
+
+<div id="box1-tabular" class="content">
+<table>
+<thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+</thead>
+
+  <%- for contact in @new_contacts -%>
+	<tr>
+	    <td><%=h contact.name %></td>
+	    <td><%=h contact.email %></td>
+	 </tr>
+  <%- end -%>
+</table>
+</div>
+
+<%- end -%>
+
+	</div>
+</div>
+

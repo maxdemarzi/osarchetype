@@ -1,0 +1,14 @@
+<% @contact = Contact.find(:first, :conditions => {:email => @invite. recipient_email, :user_id => @invite.sender_id}) %> 
+
+<% if !@contact.nil? %>
+<%= @contact.name %>,
+<% else %>
+Hi!
+<% end %>
+
+<%= @invite.message %>
+
+Click here to sign-up:
+<%= signup_url(:invite_code => @invite.token) %>
+
+Enjoy!

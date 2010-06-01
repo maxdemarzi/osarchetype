@@ -1,0 +1,38 @@
+<br/>
+<br/>
+		<div class="box box-50 altbox">
+			<div class="boxin">
+				<div class="header">
+					<h3>Log In</h3>
+				</div>
+				<% form_for @user_session do |form| %>  
+					<% if !form.error_messages.empty? %>
+						<div class="msg msg-error">
+							<%= form.error_messages %>  
+						</div>
+					<% end %>
+
+					<div class="inner-form">
+						<div class="msg msg-info">
+							<p>Enter your username, password and then click <strong>Log in</strong>.</p>
+						</div>
+						<table cellspacing="0">
+							<tr>
+								<th><%= form.label :username, "Username" %></th>
+								<td><%= form.text_field :username , :class => 'txt' %></td>
+							</tr>
+							<tr>
+								<th><%= form.label :password, "Password" %></th>
+								<td><%= form.password_field :password , :class => 'txt' %></td>
+							</tr>
+							<tr>
+								<th></th>
+								<td class="tr proceed">
+									<%= form.submit "Log in" , :class => 'button' %> 
+								</td>
+							</tr>
+						</table>
+					</div>
+				<% end %>
+			</div>
+		</div>

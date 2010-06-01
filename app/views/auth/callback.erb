@@ -1,0 +1,52 @@
+Thanks for logging in from Linked In
+
+<h2>Picture</h2>
+<img src="<%= @profile.picture_url %>"><br/>
+
+<h2>Profile</h2>
+ <p>
+ID:	<%=  @profile.id %>
+Name:	<%=  @profile.first_name %> <%=  @profile.last_name %>
+Headline: <%=  @profile.headline %><br/>
+Location 1: <%=  @profile.location.name %><br/>
+
+Location 2: <%=  @profile.location.name %><br/>
+Location 2.5: <%=  @profile.location.country["country"] %><br/>
+
+Industry: <%=  @profile.industry %><br/>
+Recommendations: <%=  @profile.num_recommenders %><br/>
+Summary: <%=  @profile.summary %><br/>
+Specialties: <%=  @profile.specialties %><br/>
+Positions:
+<%  @profile.positions.each do |pos| %>
+	<%= "#{pos.id} - #{pos.title} at #{pos.company.name}(#{pos.company.type}, #{pos.company.industry}) from #{pos.start_month}/#{pos.start_year} to  #{pos.end_month}/#{pos.end_year}"  %> <br/>
+<% end %>
+Educations:
+<%  @profile.education.each do |edu| %>
+	<%= "ID: #{edu.id} - #{edu.school_name}- #{edu.degree}- #{edu.field_of_study}- #{edu.activities} attended from #{edu.start_month}/#{edu.start_year} to  #{edu.end_month}/#{edu.end_year}"  %> <br/>
+<% end %>
+
+
+ </p>
+
+<h2>Search Results</h2>
+ <p>
+<%  unless @peers.nil? %> 
+	<%  @peers.each do |con| %>
+	    <%= "#{con.first_name} #{con.last_name}" %><br/>
+	<% end %>
+<% end %>
+ </p>
+
+
+
+
+<h2>Connections</h2>
+ <p>
+	<%  @connections.each do |con| %>
+	    <%= "#{con.id} #{con.first_name} #{con.last_name}" %><br/>
+	<% end %>
+ </p>
+
+
+

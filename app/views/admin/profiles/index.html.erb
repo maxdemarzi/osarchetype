@@ -1,0 +1,48 @@
+<h1>Listing profiles</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Linkedin</th>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Headline</th>
+    <th>Location</th>
+    <th>Country code</th>
+    <th>Industry</th>
+    <th>Summary</th>
+    <th>Specialties</th>
+    <th>Proposal comments</th>
+    <th>Associations</th>
+    <th>Honors</th>
+    <th>Picture url</th>
+    <th>Public profile url</th>
+  </tr>
+
+<% @profiles.each do |profile| %>
+  <tr>
+    <td><%=h profile.user_id %></td>
+    <td><%=h profile.linkedin_id %></td>
+    <td><%=h profile.first_name %></td>
+    <td><%=h profile.last_name %></td>
+    <td><%=h profile.headline %></td>
+    <td><%=h profile.location %></td>
+    <td><%=h profile.country_code %></td>
+    <td><%=h profile.industry %></td>
+    <td><%=h profile.summary %></td>
+    <td><%=h profile.specialties %></td>
+    <td><%=h profile.proposal_comments %></td>
+    <td><%=h profile.associations %></td>
+    <td><%=h profile.honors %></td>
+    <td><%=h profile.picture_url %></td>
+    <td><%=h profile.public_profile_url %></td>
+    <td><%= link_to 'Show', profile %></td>
+    <td><%= link_to 'Edit', edit_profile_path(profile) %></td>
+    <td><%= link_to 'Destroy', profile, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New profile', new_profile_path %>

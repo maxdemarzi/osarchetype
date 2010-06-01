@@ -1,0 +1,42 @@
+<div id="box1" class="box box-100 altbox"><!-- box full-width --> 
+	<div class="boxin"> 
+		<div class="header"> 
+			<h3>Listing education</h3> 
+			<%= link_to 'New education', new_education_path , :class => 'button' %>
+		</div>
+
+<div id="box1-tabular" class="content">
+
+<table>
+<thead>
+  <tr>
+    <th>School name</th>
+    <th>Degree</th>
+    <th>Field of study</th>
+    <th>Activities</th>
+    <th>Start</th>
+    <th>End</th>
+    <th colspan=2>Actions</th>
+  </tr>
+</thead>
+
+<% @educations.each do |education| %>
+  <tr>
+    <td><%=h education.school_name %></td>
+    <td><%=h education.degree %></td>
+    <td><%=h education.field_of_study %></td>
+    <td><%=h education.activities %></td>
+    <td><%=h education.start_month %>/<%=h education.start_year %></td>
+    <td><%=h education.end_month %>/<%=h education.end_year %></td>
+    <td><%= link_to 'Edit', edit_education_path(education) %></td>
+    <td><%= link_to 'Delete', education, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+	</div>
+
+	</div>
+</div>
+
+ 

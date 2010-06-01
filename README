@@ -1,0 +1,89 @@
+This is an early beta, it has incomplete code, hacks and is not well tested.
+
+To get this running:
+
+Setup JRuby 1.4.0 + Rails 2.3.5 + gems
+
+Gems:
+  activerecord-jdbc-adapter
+  torquebox-gem # if using torquebox server
+  linkedin
+  authlogic
+  oauth
+  oauth-plugin
+  portablecontacts  # Portable Contacts http://github.com/maxdemarzi/portablecontacts
+  repeated_auto_complete
+  sendgrid # for email
+  thinking-sphinx 
+  + standard gems
+
+Setup your Database Credentials
+-Edit config/database.yml
+
+Setup your OAuth Credentials
+-Edit config/initializers/oauth_consumers.rb
+
+   :google=>{
+     :key=>"yourkey (beta.archety.pe)",
+     :secret=>"yoursecret",
+     :scope=>"http://www-opensocial.googleusercontent.com/api/people/"
+   },
+   :yahoo=>{
+     :key=>"yourkey",
+     :secret=>"yoursecret",
+     :scope=>"http://appstore.apps.yahooapis.com/social/rest/people/"
+
+
+Setup your Indeed Credentials
+-Edit app/controllers/application_controller.rb
+
+  Rindeed.publisher_id = "yourpublisherid"
+  Rindeed.default_options(:chnl => "beta", :limit => 30)
+
+Setup your Linked In Credentials
+-Edit app/controllers/auth_controller.rb
+
+client = LinkedIn::Client.new('yourAPIKey', 'yourSecretKey') # twice
+
+
+
+
+Setup your SendGrid Credentials
+-Edit config/environment.rb
+
+ActionMailer::Base.smtp_settings = {
+  :address => "smtp.sendgrid.net",
+  :port => '25',
+  :domain => "yourdomain",
+  :authentication => :plain,
+  :user_name => "yourusername",
+  :password => "yourpassword"
+
+Ingest Results data
+- rake db:migrate
+- Import to the Results table the contents of db/Beta_Results.tab (tab delimited)
+
+
+
+Copyright (c) 2010 Max De Marzi
+
+ Permission is hereby granted, free of charge, to any person
+ obtaining a copy of this software and associated documentation
+ files (the "Software"), to deal in the Software without
+ restriction, including without limitation the rights to use,
+ copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following
+ conditions:
+
+ The above copyright notice and this permission notice shall be
+ included in all copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+ OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+ HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+ OTHER DEALINGS IN THE SOFTWARE.

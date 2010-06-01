@@ -1,0 +1,28 @@
+<h1>Listing external_users</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Service</th>
+    <th>Service</th>
+    <th>Service handle</th>
+    <th>Confirmed</th>
+  </tr>
+
+<% @external_users.each do |external_user| %>
+  <tr>
+    <td><%=h external_user.user_id %></td>
+    <td><%=h external_user.service %></td>
+    <td><%=h external_user.service_id %></td>
+    <td><%=h external_user.service_handle %></td>
+    <td><%=h external_user.confirmed %></td>
+    <td><%= link_to 'Show', external_user %></td>
+    <td><%= link_to 'Edit', edit_external_user_path(external_user) %></td>
+    <td><%= link_to 'Destroy', external_user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New external_user', new_external_user_path %>

@@ -1,0 +1,51 @@
+<% form_for @user do |form| %>  
+
+					<% if !form.error_messages.empty? %>
+						<div class="msg msg-error">
+							<%= form.error_messages %>  
+						</div>
+					<% end %>
+
+
+		<ol class="formList">  
+					<% if current_user %>
+						<div class="msg msg-info">
+							<p>Edit your information and then click <strong>Edit</strong>.</p>
+						</div>
+					<% else %>
+						<div class="msg msg-info">
+							<p>Enter your information and then click <strong>Register</strong>.</p>
+						</div>
+					<% end %>
+						<table cellspacing="0">
+							<tr>
+								<th><%= form.label :username, "Username" %></th>
+								<td><%= form.text_field :username, :class => 'txt' %></td>
+							</tr>
+							<tr>
+								<th><%= form.label :email, "Email"  %></th>
+								<td><%= form.text_field :email , :class => 'txt' %></td>
+							</tr>
+							<tr>
+								<th><%= form.label :password, "Password" %></th>
+								<td><%= form.password_field :password , :class => 'txt' %></td>
+							</tr>
+							<tr>
+								<th><%= form.label :password_confirmation, "Password confirmation" %></th>
+								<td><%= form.password_field :password_confirmation , :class => 'txt' %></td>
+							</tr>
+							<tr>
+								<th></th>
+								<td class="tr proceed">
+								<% if current_user %>
+									<%= form.submit "Edit" ,:class => 'button altbutton' %> <%= link_to 'Cancel', '/' , :class => 'button' %>
+								<% else %>
+									<%= form.hidden_field :invitation_code %>
+									<%= form.submit "Register" ,:class => 'button altbutton' %> 
+								<% end %>
+								</td>
+							</tr>
+						</table>
+
+		</ol>  
+<% end %>

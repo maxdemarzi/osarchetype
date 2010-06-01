@@ -1,0 +1,25 @@
+
+<% form_for(@message) do |f| %>
+					<% if !f.error_messages.empty? %>
+						<div class="msg msg-error">
+							<%= f.error_messages %>  
+						</div>
+					<% end %>
+
+  <p>
+    <%= f.label :to %><br />
+    <%= f.text_field :to if @action.nil? %>
+    <%= f.text_field :to , :value => @message.to.to_a.collect{|user| user.username}.join(",") if !@action.nil? %>
+  </p>
+  <p>
+    <%= f.label :subject %><br />
+    <%= f.text_field :subject %>
+  </p>
+  <p>
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </p>
+  <p>
+    <%= f.submit 'Submit', :class => 'button altbutton' %> <%= link_to 'All Messages', messages_path %>
+  </p>
+<% end %>

@@ -1,0 +1,46 @@
+<div id="box1" class="box box-100 altbox"><!-- box full-width --> 
+	<div class="boxin"> 
+		<div class="header"> 
+			<h3>Suggestions for <%= @position.title unless @position.nil? %></h3> 
+		</div>
+
+	<div id="box1-tabular" class="content">
+
+<table>
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Jobs</th>
+    <th>People</th>
+  </tr>
+</thead>
+
+<%   @user_location = Profile.find(:first, :conditions => {:user_id => current_user}).try(:location) %>
+<%   @user_location.gsub!("Greater ", "") unless @user_location.nil? %>
+<%   @user_location.gsub!(" Area", "")  unless @user_location.nil? %>
+
+
+<% @results.each do |t| %>
+  <tr>
+    <td><%=h t.next_title %></td>
+    <td><%= link_to 'See Jobs', jobs_path({:what => t.next_title, :where => @user_location}) %></td>
+    <td><%= link_to 'See People', people_path({:title => t.next_title}) %></td>
+  </tr>
+<% end %>
+
+<% if @results.empty? %>
+  <tr>
+    <td colspan=3>How about you add a <%= link_to 'Position', positions_path %> first.</td>
+  </tr>
+
+
+<% end %>
+
+</table>
+
+		</div>
+	</div>
+</div>
+
+
+

@@ -1,0 +1,41 @@
+<div id="box1" class="box box-100 altbox"><!-- box full-width --> 
+	<div class="boxin"> 
+		<div class="header"> 
+			<h3>Listing positions</h3> 
+			<%= link_to 'New position', new_position_path , :class => 'button' %>
+
+		</div>
+
+<div id="box1-tabular" class="content">
+
+<table>
+<thead>
+  <tr>
+    <th>Title</th>
+    <th>Summary</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Current?</th>
+    <th>Company</th>
+    <th colspan=2>Actions</th>
+  </tr>
+</thead>
+
+<% @positions.each do |position| %>
+  <tr>
+    <td><%=h position.title %></td>
+    <td><%=h position.summary %></td>
+    <td><%=h position.start_month %>/<%=h position.start_year %></td>
+    <td><%=h position.end_month %>/<%=h position.end_year %></td>
+    <td><%=h position.is_current %></td>
+    <td><%=h position.company %></td>
+    <td><%= link_to 'Edit', edit_position_path(position) %></td>
+    <td><%= link_to 'Delete', position, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+	</div>
+
+	</div>
+</div>
+

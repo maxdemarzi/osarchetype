@@ -1,0 +1,34 @@
+<div id="box1" class="box box-100 altbox"><!-- box full-width --> 
+	<div class="boxin"> 
+		<div class="header"> 
+			<h3>Suggested People for <%= @title unless @title.nil? %></h3> 
+		</div>
+
+		<div id="box1-tabular" class="content">
+
+<table>
+<thead>
+  <tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+  </tr>
+</thead>
+
+<%  if @peers.nil? %> 
+	  <tr>
+	    <td colspan=2>Try syncing with <%= link_to 'Linked In', auth_path %> first.</td>
+	  </tr>
+<% else %>
+	<% @peers.each do |p| %>
+	  <tr>
+	    <td><%=h p.first_name %></td>
+	    <td><%=h p.last_name %></td>
+	  </tr>
+	<% end %>
+<% end %>
+
+</table>
+
+		</div>
+	</div>
+</div>

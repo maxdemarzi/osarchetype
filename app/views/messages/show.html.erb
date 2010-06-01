@@ -1,0 +1,11 @@
+  <p>
+    <b>From:</b> <%= @message.sender.username %><br />
+  </p>
+  <p>
+    <b>Subject:</b> <%= @message.subject %><br />
+  </p>
+  <p>
+    <b>Message:</b><br /><%= @message.body %><br />
+  </p>
+<%= link_to 'Edit', edit_message_path(@message) %> |
+<%= link_to 'Back', messages_path %>

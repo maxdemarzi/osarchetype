@@ -1,0 +1,44 @@
+
+<% form_for(@education) do |f| %>
+					<% if !f.error_messages.empty? %>
+						<div class="msg msg-error">
+							<%= f.error_messages %>  
+						</div>
+					<% end %>
+
+  <p>
+    <%= f.label :school_name %><br />
+    <%= f.text_field :school_name %>
+  </p>
+  <p>
+    <%= f.label :degree %><br />
+    <%= f.text_field :degree %>
+  </p>
+  <p>
+    <%= f.label :field_of_study %><br />
+    <%= f.text_field :field_of_study %>
+  </p>
+  <p>
+    <%= f.label :activities %><br />
+    <%= f.text_field :activities %>
+  </p>
+  <p>
+    <%= f.label :start_year %><br />
+    <%= f.text_field :start_year %>
+  </p>
+  <p>
+    <%= f.label :start_month %><br />
+    <%= f.text_field :start_month %>
+  </p>
+  <p>
+    <%= f.label :end_year %><br />
+    <%= f.text_field :end_year %>
+  </p>
+  <p>
+    <%= f.label :end_month %><br />
+    <%= f.text_field :end_month %>
+  </p>
+  <p>
+    <%= f.submit 'Submit', :class => 'button altbutton' %> <%= link_to 'All Educations', educations_path %>
+  </p>
+<% end %>

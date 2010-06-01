@@ -1,0 +1,43 @@
+<% form_for(@position) do |f| %>
+					<% if !f.error_messages.empty? %>
+						<div class="msg msg-error">
+							<%= f.error_messages %>  
+						</div>
+					<% end %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :summary %><br />
+    <%= f.text_field :summary %>
+  </p>
+  <p>
+    <%= f.label :start_year %><br />
+    <%= f.text_field :start_year %>
+  </p>
+  <p>
+    <%= f.label :start_month %><br />
+    <%= f.text_field :start_month %>
+  </p>
+  <p>
+    <%= f.label :end_year %><br />
+    <%= f.text_field :end_year %>
+  </p>
+  <p>
+    <%= f.label :end_month %><br />
+    <%= f.text_field :end_month %>
+  </p>
+  <p>
+    <%= f.label :is_current %><br />
+    <%= f.text_field :is_current %>
+  </p>
+  <p>
+    <%= f.label :company %><br />
+    <%= f.text_field :company %>
+  </p>
+  <p>
+    <%= f.submit 'Submit', :class => 'button altbutton' %> <%= link_to 'All Positions', positions_path %>
+  </p>
+<% end %>

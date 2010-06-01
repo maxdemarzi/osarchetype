@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  linkedin_id: MyString
+  school_name: MyString
+  degree: MyString
+  field_of_study: MyString
+  activities: MyString
+  start_year: 1
+  start_month: 1
+  end_year: 1
+  end_month: 1
+
+two:
+  user_id: 1
+  linkedin_id: MyString
+  school_name: MyString
+  degree: MyString
+  field_of_study: MyString
+  activities: MyString
+  start_year: 1
+  start_month: 1
+  end_year: 1
+  end_month: 1

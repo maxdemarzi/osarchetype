@@ -1,0 +1,63 @@
+<p>
+  <b>First name:</b>
+  <%=h @profile.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%=h @profile.last_name %>
+</p>
+
+<p>
+  <b>Headline:</b>
+  <%=h @profile.headline %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @profile.location %>
+</p>
+
+<p>
+  <b>Country code:</b>
+  <%=h @profile.country_code %>
+</p>
+
+<p>
+  <b>Industry:</b>
+  <%=h @profile.industry %>
+</p>
+
+<p>
+  <b>Summary:</b>
+  <%=h @profile.summary %>
+</p>
+
+<p>
+  <b>Specialties:</b>
+  <%=h @profile.specialties %>
+</p>
+
+<p>
+  <b>Proposal comments:</b>
+  <%=h @profile.proposal_comments %>
+</p>
+
+<p>
+  <b>Associations:</b>
+  <%=h @profile.associations %>
+</p>
+
+<p>
+  <b>Honors:</b>
+  <%=h @profile.honors %>
+</p>
+
+<p>
+  <b>Picture:</b>
+  <img src="<%= @profile.picture_url %>">
+</p>
+
+
+<%= link_to 'Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>
